@@ -1,2 +1,0 @@
-module Api::ObjectsHelper
-end

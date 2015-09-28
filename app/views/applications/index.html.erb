@@ -1,0 +1,13 @@
+
+<% @applications.each do |app| %>
+    <p>
+      <strong>Name:</strong>
+      <%= app.name %>
+    </p>
+
+    <p>
+      <strong>Api key:</strong>
+      <%= app.api_key %>
+    </p>
+<% end %>
+
