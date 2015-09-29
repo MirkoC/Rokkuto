@@ -43,6 +43,7 @@ class ApplicationsController < ApplicationController
     end
   end
 
+
   private
 
   def applications_params
