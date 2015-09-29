@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# bootstrap
+gem 'twitter-bootstrap-rails'
 # Swagger::Docs
 gem 'swagger-docs'
 # roar

@@ -7,8 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Rokkuto</a>
+    </div>
+  </div>
+</nav>
 
-<%= yield %>
+
+<div class="col-sm-1">
+  <ul class="nav nav-pills nav-stacked btn-group-vertical" role="group">
+    <li class="<%= 'active btn-lg' if current_page?(root_path) %>"><%= link_to root_path, {class: 'btn btn-info'} do%>
+          <i class="fa fa-home"> <b>Home</b> </i> <% end %></li>
+    <li class="<%= 'active btn-lg' if current_page?(applications_path) %>"><%= link_to applications_path, {class: 'btn btn-info'} do%>
+          <i class="fa fa-bolt"> <b>Applications</b> </i> <% end %></li>
+  </ul>
+</div>
+
+<div class="col-sm-10">
+  <div class="container">
+    <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>
