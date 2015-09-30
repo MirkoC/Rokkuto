@@ -1,6 +1,6 @@
 class Api::AuthObjectsController < Api::ApplicationController
-
-  represents :json, entity: AuthObjectRepresenter, collection: AuthObjectCollectionRepresenter
+  represents :json, entity: AuthObjectRepresenter,
+                    collection: AuthObjectCollectionRepresenter
 
   def index
     @auth_objects = AuthObject.all
@@ -14,11 +14,11 @@ class Api::AuthObjectsController < Api::ApplicationController
 
   def create
     @user = User.find_by_email(params[:email])
-    if !@user
-      @user = User.create(email: params[:email], token: SecureRandom.uuid)
-    end
+    @user = User.create(email: params[:email],
+                        token: SecureRandom.uuid) unless @user
 
-    @auth_object = consume! AuthObject.new, user: User.find_by_email(params[:email])
+    @auth_object = consume! AuthObject.new,
+                            user: User.find_by_email(params[:email])
     @auth_object.save
 
     render json: @auth_object
@@ -29,5 +29,4 @@ class Api::AuthObjectsController < Api::ApplicationController
 
   def delete
   end
-
 end

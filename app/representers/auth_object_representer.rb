@@ -6,5 +6,6 @@ module AuthObjectRepresenter
   property :permissions
   property :content_id
   property :content_type
-  property :user_token, setter: lambda { |val, args| self.user_token = args[:user].token }
+  property :user_token, setter:
+                          ->(_val, args) { self.user_token = args[:user].token }
 end
