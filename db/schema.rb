@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929124343) do
+ActiveRecord::Schema.define(version: 20150930165247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,17 @@ ActiveRecord::Schema.define(version: 20150929124343) do
   end
 
   create_table "auth_objects", force: :cascade do |t|
-    t.string   "api_key"
     t.string   "user_token"
     t.string   "permissions"
     t.integer  "content_id"
     t.string   "content_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "application_id"
+    t.string   "token"
   end
+
+  add_index "auth_objects", ["application_id"], name: "index_auth_objects_on_application_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -40,4 +43,5 @@ ActiveRecord::Schema.define(version: 20150929124343) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "auth_objects", "applications"
 end
