@@ -4,7 +4,7 @@ class SendAccessEmailJob < ActiveJob::Base
   def perform(auth_objects)
     auth_objects.each do |au|
       user = User.find_by_token(au.user_token)
-      AccessMailer.send_access_email(user, au).deliver_later
+      AccessMailer.send_access_email(user, au).deliver
     end
   end
 end
