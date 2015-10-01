@@ -23,7 +23,7 @@ class Api::AccessController < Api::ApplicationController
   def save_auth_objects_and_send_response
     @auth_objects = store_auth_objects(params[:to])
     if @auth_objects
-      # TODO AccessMailer.neki_mail(objekti).deliver_later
+      SendAccessEmailJob.perform_later(@auth_objects)
       render json: @auth_objects
     else
       render_error :not_acceptable
@@ -40,10 +40,12 @@ class Api::AccessController < Api::ApplicationController
     flag = true
     auth_objects ||= []
     AuthObject.transaction do
-      auth_objects = to.map do |key_email, val_perm|
-        user = User.find_or_create_by(email: key_email, token: SecureRandom.uuid)
+      to.each do |key_email, val_perm|
+        user = User.find_by_email(key_email)
+        user = User.create(email: key_email, token: SecureRandom.uuid) unless user
         auth_object = AuthObject.new(create_auth_object_params(user, val_perm))
         flag &&= auth_object.save
+        auth_objects.push(auth_object)
       end
     end
     flag ? auth_objects : flag

@@ -15,7 +15,8 @@ class Api::AuthObjectsController < Api::ApplicationController
   def create
     @application = Application.find_by_api_key(params[:api_key])
     render_error :not_found unless @application
-    @user = User.find_or_create_by(email: params[:email], token: SecureRandom.uuid)
+    @user = User.find_by_email(params[:email])
+    @user = User.create(email: params[:email], token: SecureRandom.uuid) unless @user
     @auth_object = consume! AuthObject.new
     set_auth_object_non_consumable_params
 
