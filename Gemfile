@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
-# encrypting
-gem 'gibberish'
 # bootstrap
 gem 'twitter-bootstrap-rails'
 # Swagger::Docs
