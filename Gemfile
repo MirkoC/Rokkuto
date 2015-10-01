@@ -1,4 +1,10 @@
 source 'https://rubygems.org'
+# postmarkapp
+gem 'postmark-rails', '~> 0.10.0'
+# sidekiq
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sinatra'
 # bootstrap
 gem 'twitter-bootstrap-rails'
 # Swagger::Docs

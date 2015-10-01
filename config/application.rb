@@ -22,5 +22,7 @@ module Rokkuto
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { :api_token => '796ce7f6-b2ab-4910-ac58-853bb5ef39ed' }
   end
 end
