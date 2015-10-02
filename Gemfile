@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# swagger-docs
+gem 'swagger-docs'
 # postmarkapp
 gem 'postmark-rails', '~> 0.10.0'
 # sidekiq

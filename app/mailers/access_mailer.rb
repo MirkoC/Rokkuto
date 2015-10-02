@@ -1,5 +1,5 @@
 class AccessMailer < ActionMailer::Base
-  default from: 'no-reply@rokkuto.com'
+  default from: 'no-reply@notedin.com'
 
   layout 'mailer'
 

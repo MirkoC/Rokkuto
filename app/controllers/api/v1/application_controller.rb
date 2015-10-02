@@ -1,4 +1,4 @@
-class Api::ApplicationController < ApplicationController
+class Api::V1::ApplicationController < ApplicationController
   include Roar::Rails::ControllerAdditions
   include Roar::Rails::ControllerAdditions::Render
 

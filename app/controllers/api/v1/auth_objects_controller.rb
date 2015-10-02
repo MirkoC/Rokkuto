@@ -1,6 +1,27 @@
-class Api::AuthObjectsController < Api::ApplicationController
+class Api::V1::AuthObjectsController < Api::V1::ApplicationController
   represents :json, entity: AuthObjectRepresenter,
                     collection: AuthObjectCollectionRepresenter
+
+  swagger_controller :auth_object, 'Manage initial auth_object'
+
+  swagger_api :index do
+    summary 'Fetches all auth_object items.'
+    notes ''
+    response :ok, 'Success', :AuthObjectCollectionRepresenter
+  end
+
+  swagger_api :show do
+    summary 'Fetches one auth_object item.'
+    notes ''
+    response :ok, 'Success', :AuthObjectRepresenter
+  end
+
+  swagger_api :create do
+    summary 'Creates new auth_object.'
+    notes ''
+    response :ok, 'Success', :AuthObjectRepresenter
+    response :not_acceptable, 'Could not create new auth_object.'
+  end
 
   def index
     @auth_objects = AuthObject.all

@@ -1,6 +1,23 @@
-class Api::AccessController < Api::ApplicationController
+class Api::V1::AccessController < Api::V1::ApplicationController
   represents :json, entity: AuthObjectRepresenter,
                     collection: AuthObjectCollectionRepresenter
+
+  swagger_controller :access, 'Manage and share auth_objects with other users.'
+
+  swagger_api :show do
+    summary 'Returns auth object if requested url is valid.'
+    notes ''
+    response :ok, 'Success', :AuthObjectRepresenter
+    response :not_found, 'Url you requested was not found (i.e. not valid), or api_key wasn\'t valid'
+  end
+
+  swagger_api :create do
+    summary 'Creates n number of objects where n is number of emails in \'to\''
+    notes ''
+    response :ok, 'Success', :AuthObjectCollectionRepresenter
+    response :not_found, 'Either api_key, email, content_id, content_type or to isn\'t valid'
+    response :not_acceptable, 'Could not create auth_objects, most likely provided emails and permissions are not valid'
+  end
 
   def show
     @application = Application.find_by_api_key(params[:api_key])

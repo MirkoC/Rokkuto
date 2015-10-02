@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   resources :applications
 
   namespace :api do
-    resources :auth_objects
-    resources :access
+    namespace :v1 do
+      resources :auth_objects
+      resources :access
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
