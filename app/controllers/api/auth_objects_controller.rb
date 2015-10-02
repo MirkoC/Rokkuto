@@ -13,13 +13,10 @@ class Api::AuthObjectsController < Api::ApplicationController
   end
 
   def create
-    @application = Application.find_by_api_key(params[:api_key])
-    render_error :not_found unless @application
-    @user = User.find_by_email(params[:email])
-    @user = User.create(email: params[:email], token: SecureRandom.uuid) unless @user
+    find_application
+    find_or_create_new_user
     @auth_object = consume! AuthObject.new
     set_auth_object_non_consumable_params
-
     @auth_object.save ? (render json: @auth_object) : (render_error :not_acceptable)
   end
 
@@ -30,6 +27,16 @@ class Api::AuthObjectsController < Api::ApplicationController
   end
 
   private
+
+  def find_application
+    @application = Application.find_by_api_key(params[:api_key])
+    render_error :not_found unless @application
+  end
+
+  def find_or_create_new_user
+    @user = User.find_by_email(params[:email])
+    @user = User.create(email: params[:email], token: SecureRandom.uuid) unless @user
+  end
 
   def set_auth_object_non_consumable_params
     @auth_object.user_token = @user.token

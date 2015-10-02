@@ -41,8 +41,7 @@ class Api::AccessController < Api::ApplicationController
     auth_objects ||= []
     AuthObject.transaction do
       to.each do |key_email, val_perm|
-        user = User.find_by_email(key_email)
-        user = User.create(email: key_email, token: SecureRandom.uuid) unless user
+        user = find_or_create_new_user(key_email)
         auth_object = AuthObject.new(create_auth_object_params(user, val_perm))
         flag &&= auth_object.save
         auth_objects.push(auth_object)
@@ -65,5 +64,10 @@ class Api::AccessController < Api::ApplicationController
       permissions: permission.strip,
       application_id: @application.id,
       token: SecureRandom.uuid }
+  end
+
+  def find_or_create_new_user(email)
+    user = User.find_by_email(email)
+    user ? user : User.create(email: email, token: SecureRandom.uuid)
   end
 end
