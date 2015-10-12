@@ -9,8 +9,6 @@ gem 'sidekiq-failures'
 gem 'sinatra'
 # bootstrap
 gem 'twitter-bootstrap-rails'
-# Swagger::Docs
-gem 'swagger-docs'
 # roar
 gem 'responders'
 gem 'roar-rails'
@@ -44,7 +42,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano', group: 'development'
+gem 'capistrano-rails', group: :development
+gem 'capistrano-bundler', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and

@@ -1,0 +1,51 @@
+### Create system user
+
+- name: Create rokkuto system group
+  group: name=rokkuto state=present
+
+- name: Create rokkuto system user
+  user: name=rokkuto password={{ user_pw }} shell=/bin/bash group=rokkuto append=yes
+
+- name: "Copying yours id_rsa.pub to rokkuto's authorized_keys"
+  authorized_key: user=rokkuto key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  ignore_errors: True
+
+- name: Setup ENV vars
+  lineinfile:
+    dest: /home/rokkuto/.bashrc
+    line: "{{ item }}"
+  with_items:
+    - '\n'
+    - '# Added by Ansible'
+    - 'export RAILS_ENV={{ env }}'
+    - 'export ENV={{ env }}'
+
+### Configure nginx vhost
+
+- name: Copy rokkuto vhost
+  template: src=rokkuto_vhost dest=/etc/nginx/sites-available/rokkuto
+  notify:
+    - restart nginx
+
+- name: Enable rokkuto vhost
+  file: src=/etc/nginx/sites-available/rokkuto dest=/etc/nginx/sites-enabled/rokkuto state=link
+  notify:
+    - restart nginx
+
+
+
+### Configure Postgresql
+
+- name: Create Postgresql user
+  postgresql_user: name=rokkuto
+                   password={{ postgres_pw }}
+                   role_attr_flags=CREATEDB,NOSUPERUSER
+  sudo: yes
+  sudo_user: 'postgres'
+
+- name: Create Postgresql database
+  postgresql_db: name=rokkuto
+                 owner=rokkuto
+                 encoding='UTF-8'
+  sudo: yes
+  sudo_user: 'postgres'

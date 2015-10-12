@@ -1,0 +1,15 @@
+[localhost]
+localhost ansible_connection=local
+
+[production]
+46.101.230.130
+
+[production:vars]
+env=production
+domain=rokkuto.com
+app_name=rokkuto
+user_name=rokkuto
+group_name=rokkuto
+db_name=rokkuto
+public_ip=46.101.230.130
+public_netmask=255.255.255.0

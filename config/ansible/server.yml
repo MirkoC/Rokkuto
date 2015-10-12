@@ -1,0 +1,19 @@
+- name: Initial setup
+  hosts: production
+  user: root
+  vars:
+    pg:
+      version: '9.4'
+    ruby:
+      version: '2.2.2'
+    locale_lang: en_US.UTF-8
+  roles:
+    - { role: locale            , tags: ['locale'] }
+    - { role: common            , tags: ['common'] }
+    - { role: nginx             , tags: ['nginx'] }
+    - { role: postgresql        , tags: ['postgresql'] }
+    - { role: redis             , tags: ['redis'] }
+    - { role: hostname          , tags: ['hostname'] }
+    - { role: ruby              , tags: ['ruby'] }
+    - { role: nodejs            , tags: ['nodejs']}
+    - { role: rokkuto           , tags: ['rokkuto'] }
