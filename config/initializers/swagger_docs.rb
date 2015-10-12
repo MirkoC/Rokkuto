@@ -13,7 +13,7 @@ Swagger::Docs::Config.register_apis ({
             :info => {
                 'title' => 'Rokkuto app',
                 'description' => 'Simple auth app with feature for authorizing components.',
-                'termsOfServiceUrl' => 'https://github.com/MirkoC/rokkuto/blob/master/README.rdoc',
+                'termsOfServiceUrl' => 'https://github.com/MirkoC/rokkuto/blob/master/README.md',
                 'contact' => 'mirko@floatingpoint.com',
                 'license' => 'The MIT License',
                 'licenseUrl' => 'https://github.com/MirkoC/rokkuto/blob/master/LICENSE'
