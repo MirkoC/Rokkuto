@@ -29,7 +29,7 @@ Features in version v1:
 ```
 - giving access rights:
 
-`POST /api/v1/access`
+`POST /api/v1/access/`
 ``` json
 { 
   "api_key" : "89e652f5c52704f6a9f86bc608df5b22", 
