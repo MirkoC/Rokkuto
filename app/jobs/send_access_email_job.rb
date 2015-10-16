@@ -4,7 +4,8 @@ class SendAccessEmailJob < ActiveJob::Base
   def perform(auth_objects)
     auth_objects.each do |au|
       user = User.find_by_token(au.user_token)
-      AccessMailer.send_access_email(user, au).deliver
+      application = Application.find_by_id(au.application_id)
+      AccessMailer.send_access_email(user, au, application.domain).deliver
     end
   end
 end

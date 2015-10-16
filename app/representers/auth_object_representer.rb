@@ -9,8 +9,14 @@ module AuthObjectRepresenter
   property :application_id
   property :api_key, getter: :get_application_key, setter: nil
   property :token
+  property :domain, getter: :get_application_domain, setter: nil
 
   def get_application_key(_arg)
-    Application.find_by_id(application_id).api_key
+    @application = Application.find_by_id(application_id)
+    @application.api_key
+  end
+
+  def get_application_domain(_arg)
+    @application.domain
   end
 end
