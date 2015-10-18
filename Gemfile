@@ -49,6 +49,7 @@ gem 'capistrano-bundler', group: :development
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and
   # get a debugger console
+  gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
 end
 
