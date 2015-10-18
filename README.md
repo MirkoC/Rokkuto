@@ -44,3 +44,9 @@ Features in version v1:
 }
 
 ```
+
+- check if token exists(i.e. valid access rights)
+
+`GET /api/v1/access/:token/?api_key=:api_key`
+
+If it returns an auth_object then access rights are valid
