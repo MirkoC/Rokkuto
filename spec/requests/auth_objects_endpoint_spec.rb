@@ -22,7 +22,8 @@ RSpec.describe 'AuthObject endpoints', type: :request do
   private
 
   def auth_objects_request_body
-    { api_key: @application.api_key,
+    {
+      api_key: @application.api_key,
       content_id: '7',
       content_type: 'link',
       email: 'me@example.org',
