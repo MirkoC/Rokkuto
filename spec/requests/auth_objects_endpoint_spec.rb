@@ -4,7 +4,7 @@ RSpec.describe 'AuthObject endpoints', type: :request do
 
   before do
     @headers = {'Content-Type' => 'Application/JSON'}
-    @application = create(:application)#Application.create(name: 'test_app', api_key: SecureRandom.hex(16), domain: 'test_app.com')
+    @application = create(:application)
   end
 
   describe 'POST /api/v1/auth_objects/' do

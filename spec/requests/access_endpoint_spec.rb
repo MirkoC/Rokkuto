@@ -4,9 +4,9 @@ RSpec.describe 'Access endpoints', type: :request do
 
   before do
     @headers = {'Content-Type' => 'Application/JSON'}
-    @application = Application.create(name: 'test_app', api_key: SecureRandom.hex(16), domain: 'test_app.com')
-    @user = User.create(email: 'me@example.org', token: SecureRandom.uuid)
-    @auth_object = AuthObject.create(auth_objects_hash)
+    @application = create(:application)
+    @user = create(:user)
+    @auth_object = create(:auth_object, application_id: @application.id, user_token: @user.token)
   end
 
   describe 'POST /api/v1/access/' do
@@ -46,16 +46,6 @@ RSpec.describe 'Access endpoints', type: :request do
       to: { 'other@example.org': 'rw',
             'someone@example.org': 'rwx',
             'other_someone@example.org': 'r' }
-    }
-  end
-
-  def auth_objects_hash
-    { application_id: @application.id,
-      content_id: '7',
-      content_type: 'link',
-      user_token: @user.token,
-      permissions: 'rwx',
-      token: SecureRandom.uuid
     }
   end
 end
