@@ -1,17 +1,24 @@
+<div class="col-sm-8">
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Api key</th>
+      <th>Domain</th>
+    </tr>
 
-<% @applications.each do |app| %>
-    <p>
-      <strong>Name:</strong>
-      <%= app.name %>
-    </p>
+    <% @applications.each do |app| %>
 
-    <p>
-      <strong>Api key:</strong>
-      <%= app.api_key %>
-    </p>
-    <p>
-      <strong>Application domain:</strong>
-      <%= app.domain %>
-    </p>
-<% end %>
+        <tr>
+          <td><%= app.name %></td>
+          <td><%= app.api_key %></td>
+          <td><%= app.domain %></td>
+          <td><%=link_to 'Details', application_path(app), class: 'btn btn-info btn-xs' %></td>
+          <%#= raise locals[:path].inspect %>
+          <td><%=link_to 'Edit', edit_application_path(app), class: 'btn btn-warning btn-xs' %></td>
+          <td><%=link_to 'Delete', application_path(app), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+
 
