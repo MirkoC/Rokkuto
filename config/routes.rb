@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :applications
-
+  get 'documentation' => 'home#documentation'
   namespace :api do
     namespace :v1 do
       resources :auth_objects

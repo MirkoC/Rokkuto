@@ -10,7 +10,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Rokkuto</a>
+      <a class="navbar-brand" href="<%= root_path %>">Rokkuto</a>
     </div>
   </div>
 </nav>
@@ -21,6 +21,8 @@
   <ul class="nav nav-pills nav-stacked btn-group-vertical" role="group">
     <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to root_path, {class: 'btn btn-info'} do%>
           <i class="fa fa-home"> <b>Home</b> </i> <% end %></li>
+    <li class="<%= 'active' if current_page?(documentation_path) %>"><%= link_to documentation_path, {class: 'btn btn-info'} do%>
+          <i class="fa fa-paperclip"> <b>Docs</b> </i> <% end %></li>
     </br>
     <li class="<%= 'active' if current_page?(applications_path)%>"><%= link_to applications_path, {class: 'btn btn-info'} do%>
           <i class="fa fa-bolt"> <b>Applications</b> </i> <% end %></li>

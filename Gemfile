@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# redcarpet
+gem 'redcarpet'
 # swagger-docs
 gem 'swagger-docs'
 # postmarkapp

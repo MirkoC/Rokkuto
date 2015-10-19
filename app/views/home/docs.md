@@ -1,6 +1,5 @@
 # ROKKUTO
 
-Rokkuto is auth web service.
 
 Features in version v1:
 
@@ -10,7 +9,7 @@ Features in version v1:
 
 
 ## Installation
-- fork the repo
+- fork the <a href="https://github.com/MirkoC/rokkuto" target="_blank">repo</a>
 - then `bundle install`
 - run it with `foreman start`
 
