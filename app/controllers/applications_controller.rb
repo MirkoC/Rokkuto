@@ -46,6 +46,6 @@ class ApplicationsController < ApplicationController
   private
 
   def applications_params
-    params.require(:application).permit(:name)
+    params.require(:application).permit(:name, :domain)
   end
 end
