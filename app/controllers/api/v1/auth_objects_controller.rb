@@ -29,7 +29,7 @@ class Api::V1::AuthObjectsController < Api::V1::ApplicationController
   end
 
   def show
-    @auth_object = AuthObject.find_by_id(params[:id])
+    @auth_object = AuthObject.find_by_id(params[:id]) || NilAuthObject.new
     render json: @auth_object
   end
 

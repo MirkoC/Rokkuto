@@ -12,7 +12,7 @@ module AuthObjectRepresenter
   property :domain, getter: :get_application_domain, setter: nil
 
   def get_application_key(_arg)
-    @application = Application.find_by_id(application_id)
+    @application = Application.find_by_id(application_id) || NilApplication.new
     @application.api_key
   end
 
